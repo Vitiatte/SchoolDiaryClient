@@ -1,0 +1,13 @@
+<div class="row">
+  <div class="col-xs-12">
+    <a href="#" class="list-grop-item clearfix">
+      <div class="pull-left">
+        <h4 class="list-group-item-heading">{{learnDay.date}}</h4>
+        <p class="list-group-item-text" *ngFor="let lesson of learnDay.learnDayRecords">
+          {{getLessonDescription(lesson)}}
+        </p>
+        <hr>
+      </div>
+    </a>
+  </div>
+</div>
