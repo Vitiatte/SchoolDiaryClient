@@ -1,8 +1,8 @@
-<div class="row">
+<div class="row" xmlns="http://www.w3.org/1999/html">
   <div class="col-xs-3"></div>
   <div class="col-xs-6">
-    <div class="alert alert-danger" *ngIf="error">
-      <p>{{ error }}</p>
+    <div class="alert alert-danger" *ngIf="service.error">
+      <p>{{service.error}}</p>
     </div>
     <form #authForm="ngForm" (ngSubmit)="login(authForm)" >
       <div class="form-group">
