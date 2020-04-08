@@ -1,0 +1,13 @@
+<div class="row">
+  <div class="col-lg-12 text-center">
+    <h1 *ngIf="service.checkCredentials()">Welcome in your School Diary App!</h1>
+    <div class="center-block" *ngIf="!service.checkCredentials()">
+      <label for="signin">I don't recognize you, Comrade. Please sign in!</label>
+      <br>
+      <button
+        id="signin"
+        class="btn btn-primary"
+        routerLink="/login">SIGN IN</button>
+    </div>
+  </div>
+</div>

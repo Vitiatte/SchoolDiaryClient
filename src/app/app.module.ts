@@ -13,6 +13,10 @@ import { ScoreComponent } from './gradebook/score/score.component';
 import { ParentSearchComponent } from './parent-search/parent-search.component';
 import {DatePipe} from '@angular/common';
 import {FormsModule} from '@angular/forms';
+import { LoginComponent } from './login/login.component';
+import { HomeComponent } from './home/home.component';
+import {AuthService} from './login/auth.service';
+import {AuthGuard} from './login/auth.guard';
 
 @NgModule({
   declarations: [
@@ -23,7 +27,9 @@ import {FormsModule} from '@angular/forms';
     LearnDayComponent,
     GradebookComponent,
     ScoreComponent,
-    ParentSearchComponent
+    ParentSearchComponent,
+    LoginComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -31,7 +37,8 @@ import {FormsModule} from '@angular/forms';
     AppRoutingModule,
     FormsModule
   ],
-  providers: [DatePipe],
+  providers: [DatePipe,
+  AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
