@@ -1,0 +1,17 @@
+<form class="row" (ngSubmit)="onSearch(f)" #f="ngForm">
+  <div class="col-xs-1"></div>
+  <div class="col-xs-4 form-group text-center">
+    <label class="text-center">Start Date: </label>
+    <input class="form-control collectes-ville text-center" type="date" name="selectedStartDate" ngModel>
+  </div>
+
+  <div class="col-xs-4 form-group text-center">
+    <label class="text-center">End Date: </label>
+    <input class="form-control collectes-ville text-center" type="date" name="selectedEndDate" ngModel>
+  </div>
+
+  <div class="col-xs-2 form-group text-center buttonDiv" style="padding-top: 25px">
+    <button class="form-control collectes-ville text-center" type="submit">Search</button>
+  </div>
+
+</form>

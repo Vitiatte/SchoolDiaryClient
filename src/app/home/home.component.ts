@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Cookie} from 'ng2-cookies';
-import {AuthService} from '../login/auth.service';
+import {AuthService} from '../service/auth.service';
 
 @Component({
   selector: 'app-home-component',
@@ -12,7 +12,6 @@ export class HomeComponent implements OnInit {
   constructor(public service: AuthService) { }
 
   ngOnInit(): void {
-    console.log(Cookie.check('access_token'));
   }
 
 }

@@ -1,0 +1,10 @@
+<app-parent-search
+  (searchForm)="handleChildForm($event)"
+  *ngIf="userRole === 'FAMILY'">
+</app-parent-search>
+
+<app-student-search
+  (searchForm)="handleChildForm($event)"
+  *ngIf="userRole === 'STUDENT'"
+>
+</app-student-search>

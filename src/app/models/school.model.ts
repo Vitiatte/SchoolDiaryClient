@@ -1,5 +1,5 @@
 export class School {
-  public id: number;
+  public id: string;
   public title: string;
   public address: string;
 }

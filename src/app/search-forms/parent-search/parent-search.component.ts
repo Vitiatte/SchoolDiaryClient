@@ -1,9 +1,9 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
-import {Student} from '../models/student.model';
-import {ApiService} from '../api.service';
+import {Student} from '../../models/student.model';
+import {ResourceService} from '../../service/resource.service';
 import {DatePipe} from '@angular/common';
 import {NgForm} from '@angular/forms';
-import {ParentSearchForm} from './parent-search-form.model';
+import {SearchFormData} from '../search-form-data.model';
 
 @Component({
   selector: 'app-parent-search',
@@ -12,9 +12,9 @@ import {ParentSearchForm} from './parent-search-form.model';
 })
 export class ParentSearchComponent implements OnInit {
   students: Student[];
-  @Output() searchForm = new EventEmitter<ParentSearchForm>();
+  @Output() searchForm = new EventEmitter<SearchFormData>();
 
-  constructor(private api: ApiService, public datepipe: DatePipe) { }
+  constructor(private api: ResourceService, public datepipe: DatePipe) { }
 
   ngOnInit(): void {
     this.api.getStudentsForParent(2).subscribe(data => {
@@ -24,7 +24,7 @@ export class ParentSearchComponent implements OnInit {
 
   onSearch(form: NgForm) {
     const value = form.value;
-    const searchForm = new ParentSearchForm();
+    const searchForm = new SearchFormData();
     searchForm.studentId = value.selectedStudentId;
     console.log(this.datepipe.transform(value.selectedStartDate, 'yyyy/MM/dd'));
     searchForm.startDate = this.datepipe.transform(value.selectedStartDate, 'yyyy/MM/dd');

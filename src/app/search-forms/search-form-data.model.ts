@@ -1,4 +1,4 @@
-export class ParentSearchForm {
+export class SearchFormData {
   studentId: string;
   startDate: string;
   endDate: string;

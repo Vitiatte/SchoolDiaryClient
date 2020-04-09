@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {AuthService} from '../login/auth.service';
+import {AuthService} from '../service/auth.service';
+import {Cookie} from 'ng2-cookies';
+import {ServiceConstants} from '../service/service-constants';
 
 @Component({
   selector: 'app-header',
@@ -9,16 +11,19 @@ import {AuthService} from '../login/auth.service';
 export class HeaderComponent implements OnInit {
   collapsed = true;
   isLoggedIn = false;
+  userRole = null;
 
-  constructor(private service: AuthService) { }
+  constructor(private authService: AuthService,
+              private constants: ServiceConstants) { }
 
   ngOnInit(): void {
-    if (this.service.checkCredentials()) {
+    if (this.authService.checkCredentials()) {
       this.isLoggedIn = true;
+      this.userRole = Cookie.get(this.constants.cookieUserRole);
     }
   }
 
   logout() {
-    this.service.logout();
+    this.authService.logout();
   }
 }

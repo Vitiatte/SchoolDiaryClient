@@ -2,9 +2,9 @@ import {Subject} from './subject.model';
 import {ScoreType} from './score-type.model';
 
 export class Score {
-  id: number;
+  id: string;
   subject: Subject;
   scoreType: ScoreType;
-  score: number;
-  date: Date;
+  score: string;
+  date: string;
 }

@@ -1,9 +1,9 @@
 import {School} from './school.model';
 
 export class SchoolYear {
-  public id: number;
+  public id: string;
   public title: number;
-  public startDate: Date;
-  public endDate: Date;
+  public startDate: string;
+  public endDate: string;
   public school: School;
 }

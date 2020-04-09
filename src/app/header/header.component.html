@@ -14,9 +14,10 @@
       <ul class="nav navbar-nav">
         <li routerLinkActive="active"><a routerLink="schedule">Schedule</a></li>
         <li routerLinkActive="active"><a routerLink="gradebook">Gradebook</a></li>
+        <li routerLinkActive="active" *ngIf="userRole ==='STUDENT'"><a routerLink="homework">Homeworks</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li routerLinkActive="active"><a routerLink="parentDetail">Detail</a></li>
+        <li routerLinkActive="active"><a routerLink="detail">Detail</a></li>
         <li (click)="logout()"><a routerLink="home">Logout</a> </li>
         <li></li>
         <li></li>

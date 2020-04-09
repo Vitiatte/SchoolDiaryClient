@@ -1,5 +1,5 @@
 export class Schedule {
-  public id: number;
+  public id: string;
   public title: string;
   public grade: Grade;
 }

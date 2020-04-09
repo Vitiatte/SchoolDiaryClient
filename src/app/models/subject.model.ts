@@ -1,6 +1,6 @@
 export class Subject {
-  public id: number;
+  public id: string;
   public name: string;
   public teacher: string;
-  public maxScore: number;
+  public maxScore: string;
 }

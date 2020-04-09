@@ -1,4 +1,4 @@
 export class ScoreType {
-  id: number;
+  id: string;
   type: string;
 }

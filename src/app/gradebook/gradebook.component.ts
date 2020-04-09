@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Score} from '../models/score.model';
-import {ApiService} from '../api.service';
-import {ParentSearchForm} from '../parent-search/parent-search-form.model';
+import {ResourceService} from '../service/resource.service';
+import {SearchFormData} from '../search-forms/search-form-data.model';
 
 @Component({
   selector: 'app-gradebook',
@@ -11,12 +11,12 @@ import {ParentSearchForm} from '../parent-search/parent-search-form.model';
 export class GradebookComponent implements OnInit {
   scores: Score[];
 
-  constructor(private api: ApiService) { }
+  constructor(private api: ResourceService) { }
 
   ngOnInit(): void {
   }
 
-  applySearchFilter(searchFilter: ParentSearchForm) {
+  applySearchFilter(searchFilter: SearchFormData) {
     this.api.getGradebook(searchFilter.studentId, searchFilter.startDate, searchFilter.endDate).
     subscribe(data => {
       this.scores = data;

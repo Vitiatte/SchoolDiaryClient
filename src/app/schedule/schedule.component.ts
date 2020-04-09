@@ -1,8 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {LearnDay} from '../models/learn-day.model';
-import {ApiService} from '../api.service';
-import {LearnDayRecord} from '../models/learn-day-record.model';
-import {ParentSearchForm} from '../parent-search/parent-search-form.model';
+import {ResourceService} from '../service/resource.service';
+import {SearchFormData} from '../search-forms/search-form-data.model';
 
 @Component({
   selector: 'app-schedule',
@@ -13,15 +12,21 @@ export class ScheduleComponent implements OnInit {
 
   public schedule: LearnDay[];
 
-  constructor(private api: ApiService) { }
+
+  constructor(private api: ResourceService) {
+  }
 
   ngOnInit(): void {
   }
 
-  applySearchResult(searchForm: ParentSearchForm) {
-    this.api.getSchedule(searchForm.studentId, searchForm.startDate, searchForm.endDate).
-      subscribe(data => {
-        this.schedule = data;
+  applySearchResult(searchForm: SearchFormData) {
+    this.api.getSchedule(searchForm.studentId, searchForm.startDate, searchForm.endDate).subscribe(data => {
+      this.schedule = data;
+      this.schedule.sort((a, b) => {
+        return a.date > b.date ?
+          1 : a.date < b.date ? -1 : 0;
+      });
     });
   }
+
 }
