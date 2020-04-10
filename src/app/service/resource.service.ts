@@ -38,6 +38,12 @@ export class ResourceService {
     return this.getResource(url);
   }
 
+  getScoresBySubjectAndStudent(studentId: string, subjectId: string) {
+    const url = this.constants.resourceBaseUri + 'scoreBySubject?stdId=' +
+      studentId + '&subjectId=' + subjectId;
+    return this.getResource(url);
+  }
+
   getResource(resourceUrl): Observable<any> {
     const header = new HttpHeaders({
       'Content-type': 'application/x-www-form-urlencoded; charset=utf-8',

@@ -30,14 +30,15 @@ export class AuthService {
     this.http.post(this.constants.authTokenUri,
       params.toString(), {headers: header})
       .subscribe(
-        data => {
-          this.saveToken(data);
-          this.updateUserData(login);
+        (data: any) => {
+          const expireDate = new Date().getTime() + (1000 * data.expires_in);
+          this.saveToken(data, expireDate);
+          this.updateUserData(login, expireDate);
         },
         error => this.handleError(error));
   }
 
-  updateUserData(login) {
+  updateUserData(login, expireDate) {
     const header = new HttpHeaders({
       'Content-type': 'application/x-www-form-urlencoded; charset=utf-8',
       Authorization: 'Bearer ' + Cookie.get(this.constants.cookieAccessToken)
@@ -48,16 +49,14 @@ export class AuthService {
       `${this.constants.resourceBaseUri + 'user/id-role?login=' + login}`,
       {headers: header})
       .subscribe((data: any) => {
-        console.log(data);
-        Cookie.set(this.constants.cookieUserId, data.id);
-        Cookie.set(this.constants.cookieUserRole, data.role);
+        Cookie.set(this.constants.cookieUserId, data.id, expireDate);
+        Cookie.set(this.constants.cookieUserRole, data.role, expireDate);
       });
 
     window.location.href = this.constants.clientHomeUri;
   }
 
-  saveToken(token) {
-    const expireDate = new Date().getTime() + (1000 * token.expires_in);
+  saveToken(token, expireDate) {
     Cookie.set(this.constants.cookieAccessToken, token.access_token, expireDate);
   }
 
@@ -66,11 +65,8 @@ export class AuthService {
   }
 
   logout() {
-    Cookie.delete(this.constants.cookieAccessToken);
-    Cookie.delete(this.constants.cookieUserLogin);
-    Cookie.delete(this.constants.cookieUserId);
-    Cookie.delete(this.constants.cookieUserRole);
-    window.location.reload();
+    Cookie.deleteAll();
+    window.location.href = this.constants.clientHomeUri;
   }
 
   handleError(error: any) {
